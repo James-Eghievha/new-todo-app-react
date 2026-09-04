@@ -1,16 +1,113 @@
-# React + Vite
+# React Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Todo application built with React. The app allows users to create, complete, and delete tasks, with todos persisted in the browser using **localStorage**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Add new todos
+- Mark todos as completed
+- Delete todos
+- Persistent data using browser localStorage
+- Responsive and simple user interface
+- React component-based architecture
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- HTML/CSS
+- Vite
+- Browser localStorage
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd YOUR_PROJECT_FOLDER
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the development server
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed in your terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## How Persistence Works
+
+Todos are stored in the browser's `localStorage`, so tasks remain available after refreshing or closing the browser.
+
+Because the data is stored locally:
+
+- Todos are specific to the browser/device being used.
+- The data is not stored in a remote database.
+- Clearing browser storage will remove the saved todos.
+
+## Project Structure
+
+A typical project structure is:
+
+```text
+todo-app/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── ...
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+## Available Scripts
+
+```bash
+npm run dev
+```
+
+Starts the development server.
+
+```bash
+npm run build
+```
+
+Creates a production build.
+
+```bash
+npm run preview
+```
+
+Previews the production build locally.
+
+## Future Improvements
+
+Possible improvements include:
+
+- Todo filtering: All / Active / Completed
+- Edit existing todos
+- Clear completed todos
+- Todo due dates
+- Dark mode
+- Backend/database persistence
+- User authentication
+- Deployment to Vercel or Netlify
+
+## License
+
+This project is available for learning and personal use.
