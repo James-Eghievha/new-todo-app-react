@@ -1,52 +1,36 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskControls from "./components/TaskControls";
 import TaskList from "./components/TaskList";
+import { taskReducer } from "./reducers/taskReducer";
 import {
-  getStoredTasks,
-  updateLocalStorage
+  getStoredTasks
 } from "./utils/localStorageUtils";
 
 function App() {
-  const [tasks, setTasks] = useState(getStoredTasks());
+  const [tasks, dispatch] = useReducer(taskReducer, getStoredTasks());
 
     const [showOnlyIncomplete, setShowOnlyIncomplete] = useState(false);
 
     const addTask = (newTask) => {
-      const updatedTasks = [...tasks, newTask];
-      setTasks(updatedTasks);
-      updateLocalStorage(updatedTasks);
+      dispatch({type: "ADD", payload: newTask});
     };
 
     const removeTask = (id) => {
-      const updatedTasks = tasks.filter((t) => t.id !== id);
-      setTasks(updatedTasks);
-      updateLocalStorage(updatedTasks);
+      dispatch({ type: "REMOVE", payload: id });
     };
 
     const updateTask = ({ taskId, editText, editPriority }) => {
-      const updatedTasks = tasks.map((task) =>
-      task.id === taskId ?
-      { ...task, text: editText, priority: editPriority }
-      : task
-      );
-      setTasks(updatedTasks);
-      updateLocalStorage(updatedTasks);
+      dispatch({ type: "UPDATE", payload: { taskId, editText, editPriority }});
     };
 
     const toggleTaskDone = (id) => {
-      const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, done: !task.done} :task
-      );
-      setTasks(updatedTasks);
-      updateLocalStorage(updatedTasks);
+      dispatch({ type: "TOGGLE_DONE", payload: id });
     };
+
     
     const sortTasks = () => {
-      const sortedTasks = [...tasks]
-      .sort((a, b) => a.priority - b.priority);
-      setTasks(sortedTasks);
-      updateLocalStorage(sortedTasks);
+      dispatch({ type: "SORT"});
     };
 
 

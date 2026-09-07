@@ -20,7 +20,7 @@ const TaskControls = ({
                 onChange={() => setShowOnlyIncomplete(!showOnlyIncomplete)}
                 style={{ marginRight: "5px"}}
                 />
-                Show only imcomplete
+                Show only incomplete
             </label>
             <button
                 onClick={sortTasks}
