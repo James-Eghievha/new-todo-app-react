@@ -6,6 +6,7 @@ import { taskReducer } from "./reducers/taskReducer";
 import {
   getStoredTasks
 } from "./utils/localStorageUtils";
+import { TaskContext } from "./contexts/TaskContext";
 
 function App() {
   const [tasks, dispatch] = useReducer(taskReducer, getStoredTasks());
@@ -35,6 +36,7 @@ function App() {
 
 
   return (
+    <TaskContext.Provider value={{ removeTask, toggleTaskDone, updateTask }}>
     <div style={{
       padding: "20px",
       fontFamily: "Arial",
@@ -48,15 +50,13 @@ function App() {
         setShowOnlyIncomplete={setShowOnlyIncomplete}
         sortTasks={sortTasks}
       />
+      
       <TaskList 
         tasks={tasks}
         showOnlyIncomplete={showOnlyIncomplete}
-        toggleTaskDone={toggleTaskDone}
-        removeTask={removeTask}
-        updateTask={updateTask}
-
       />
     </div>
+    </TaskContext.Provider >
   )
 }
 
